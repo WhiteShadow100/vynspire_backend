@@ -1,0 +1,25 @@
+# Python compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+
+# Django migrations (optional, if you want to keep them versioned, otherwise ignore)
+*/migrations/*.pyc
+*/migrations/__pycache__/
+
+# SQLite database
+*.sqlite3
+litsql  # if that's your DB file
+
+# Django environment variables
+.env
+
+# Logs
+*.log
+
+# Media / uploads
+media/
