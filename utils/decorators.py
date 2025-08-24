@@ -18,9 +18,9 @@ def jwt_required(view_func):
         try:
             payload = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
         except jwt.ExpiredSignatureError:
-            return JsonResponse({"error": "Token expired"}, status=401)
+            return JsonResponse({"error": "Token expired", "message": "Token Expired."}, status=401)
         except jwt.InvalidTokenError:
-            return JsonResponse({"error": "Invalid token"}, status=401)
+            return JsonResponse({"error": "Invalid token", "message": "Invalid Token."}, status=401)
 
         # Attach user info to request
         request.user_id = payload.get("user_id")

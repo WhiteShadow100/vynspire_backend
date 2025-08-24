@@ -78,11 +78,11 @@ def edit_post(request, post_id):
     try:
         post = Post.objects.get(id=post_id)
     except Post.DoesNotExist:
-        return JsonResponse({"error": "Post not found"}, status=404)
+        return JsonResponse({"error": "Post not found", "message": "Page Not Found"}, status=404)
     
     # Check ownership
     if post.author.id != request.user_id:
-        return JsonResponse({"error": "Not authorized"}, status=403)
+        return JsonResponse({"error": "Not authorized", "message": "You cannot delete this post."}, status=403)
     
     try:
         data = json.loads(request.body)  # parse JSON body
@@ -111,11 +111,11 @@ def delete_post(request, post_id):
         try:
             post = Post.objects.get(id=post_id)
         except Post.DoesNotExist:
-            return JsonResponse({"error": "Post not found"}, status=404)
+            return JsonResponse({"error": "Post not found", "message": "Post not found"}, status=404)
 
         # Check ownership
         if post.author.id != request.user_id:
-            return JsonResponse({"error": "Not authorized"}, status=403)
+            return JsonResponse({"error": "Not authorized", "message": "You cannot edit this post."}, status=403)
 
         post.delete()
         return JsonResponse({"message": "Post deleted successfully"}, status=200)
