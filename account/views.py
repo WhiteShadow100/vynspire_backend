@@ -55,8 +55,8 @@ def login(request):
                 return JsonResponse({"token": token})
 
             else:
-                return JsonResponse({"error": "Invalid credentials", "message": "Invalid Credential."}, status=401)
+                return JsonResponse({"error": "Invalid credentials"}, status=401)
         except Exception as e:
-            return JsonResponse({"error": str(e), "message": str(e)}, status=400)
+            return JsonResponse({"error": str(e)}, status=400)
 
     return JsonResponse({"error": "Only POST method allowed"}, status=405)
